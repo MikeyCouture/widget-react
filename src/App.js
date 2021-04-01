@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Accordion from "./Components/Accordion";
 import Search from "./Components/Search";
 import Dropdown from "./Components/Dropdown";
-// import { useState } from "react/cjs/react.production.min";
 
 const items = [
   {
@@ -36,15 +35,21 @@ const options = [
 
 export default () => {
   const [selected, setSelected] = useState(options[0]);
+  const [showDropdown, setShowDropdown] = useState(true);
   return (
     <div>
+      <button onClick={() => setShowDropdown(!showDropdown)}>
+        Toggle Dropdown
+      </button>
       {/* <Accordion items={items} /> */}
       {/* <Search /> */}
-      <Dropdown
-        onSelectedChange={setSelected}
-        selected={selected}
-        options={options}
-      />
+      {showDropdown ? (
+        <Dropdown
+          onSelectedChange={setSelected}
+          selected={selected}
+          options={options}
+        />
+      ) : null}
     </div>
   );
 };
